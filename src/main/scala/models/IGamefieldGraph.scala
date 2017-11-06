@@ -8,5 +8,3 @@ trait IGamefieldGraph {
   def getId : String
   def setId (id : String) : Unit
 }
-
-// Test commit
