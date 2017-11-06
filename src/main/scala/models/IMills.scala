@@ -2,7 +2,7 @@ package models
 
 trait IMills {
 
-  def getMills1 (v : Int) : List [Int]
-  def getMills2 (v : Int) : List [Int]
+  def getMill (v : Int) : List [Int]
+  def getMill2 (v : Int) : List [Int]
 
 }
