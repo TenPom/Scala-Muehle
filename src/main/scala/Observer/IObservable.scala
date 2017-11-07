@@ -16,7 +16,6 @@ trait IObservable {
 
   /**
     * Update Observers
-    * @param vertex
     */
-  def updateObservers (vertex : Int) : Unit
+  def updateObservers : Unit
 }
