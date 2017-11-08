@@ -110,12 +110,11 @@ trait IController {
     */
   def getConsumedStonesP2 : Int
 
-
-  def getGamefieldString : String
-
   /**
     * resets the game
     * @return true if successful, false if not
     */
   def resetGame : Boolean
+
+  def getGamefieldString : String
 }
