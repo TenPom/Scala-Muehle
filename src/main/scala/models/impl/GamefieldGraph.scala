@@ -9,7 +9,7 @@ class GamefieldGraph extends IGamefieldGraph {
   val CHAR_VERTEXES = List('b', 'n', 's')
   val CHAR_EMPTY = 'n'
   var vertexes = Array[Char](24)
-  var adjacencyList = List(List(Int))
+  var adjacencyList = List[List[Int]]()
 
   def createVertexes(): Unit = {
 
@@ -32,7 +32,7 @@ class GamefieldGraph extends IGamefieldGraph {
     return CHAR_EMPTY
   }
 
-  override def getAdjacencyList(v: Int): List[Int] = ??? //adjacencyList(v)
+  override def getAdjacencyList(v: Int): List[Int] = adjacencyList(v)
 
   override def getId: String = ???
 
