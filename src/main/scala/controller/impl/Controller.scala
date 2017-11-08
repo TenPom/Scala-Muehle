@@ -2,12 +2,46 @@ package controller.impl
 
 import Observer.{IObservable, IObserver}
 import controler.IController
+import models.IPlayer
+import models.impl.Player
 
 class Controller extends IController with IObservable {
+
+  val MINSTONES : Int = 3
+  val MAXSTONES : Int = 18
+  val SLEEPTIME : Int = 5500
+  val STONESPLAYER : Int = 9
+
+  val observers : List[IObserver] = List[IObserver]()
+  //var gamefield : IGamefieldGraphAdapter
+  var player1, player2, current : IPlayer = _
+  var stonesPlayer1, consumedStonesPlayer1 : Int = _
+  var stonesPlayer2, consumedStonesPlayer2 : Int = _
+  var placedStones: Int = 0
+  var playerWon : String = ""
+  var currentStonesToDelete : Int = 0
+  var selected : Int = 0
+
+  this.init
+
+
   /**
     * replaces the Constructor and is called from restartGame
     */
-  override def init: Unit = ???
+  override def init: Unit = {
+    this.player1 = new Player("Player1", 'w')
+    this.player2 = new Player("Player2", 'b')
+    this.stonesPlayer1 = STONESPLAYER
+    this.stonesPlayer2 = STONESPLAYER
+    this.current = this.player1
+    this.placedStones = 0
+    this.playerWon = ""
+    this.currentStonesToDelete = 0
+    this.selected = 0
+    this.consumedStonesPlayer1 = 0
+    this.consumedStonesPlayer2 = 0
+
+  }
 
   /**
     * Sets a Stone on the Gamefield
@@ -125,9 +159,8 @@ override def setStone(vertex: Int, color: Char): Boolean = ???
     *
     * @return number of consumed stones
     */
-override def getConsumedStonesP2: Int = ???
+  override def getConsumedStonesP2: Int = ???
 
-  override def getGamefieldString: String = ???
 
   /**
     * resets the game
@@ -154,4 +187,6 @@ override def getConsumedStonesP2: Int = ???
     * Update Observers
     */
   override def updateObservers: Unit = ???
+
+  override def getGamefieldString: String = ???
 }
