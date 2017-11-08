@@ -2,14 +2,25 @@ package models.impl
 
 import models.IGamefieldGraph
 
+/**
+  *
+  * @author Patrick Schmidt
+  * @since 08.11.2017
+  */
 class GamefieldGraph extends IGamefieldGraph {
 
   val NUMBER_ZERO = 0
   val NUMBER_VERTEX = 24
   val CHAR_VERTEXES = List('b', 'n', 's')
   val CHAR_EMPTY = 'n'
-  var vertexes = Array[Char](24)
-  var adjacencyList = List[List[Int]]()
+  var vertexes : Array[Char] = _
+  var adjacencyList : List[List[Int]] = _
+
+  def init() : Unit = {
+    adjacencyList = List[List[Int]]()
+    vertexes = Array[Char](24)
+
+  }
 
   def createVertexes(): Unit = {
 
