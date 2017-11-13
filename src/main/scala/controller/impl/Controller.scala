@@ -2,6 +2,7 @@ package controller.impl
 
 import Observer.{IObservable, IObserver}
 import controler.IController
+import controller.IGamefieldGraphAdapter
 import models.IPlayer
 import models.impl.Player
 
@@ -13,7 +14,7 @@ class Controller extends IController with IObservable {
   val STONESPLAYER : Int = 9
 
   val observers : List[IObserver] = List[IObserver]()
-  //var gamefield : IGamefieldGraphAdapter
+  var gamefield : IGamefieldGraphAdapter = _
   var player1, player2, current : IPlayer = _
   var stonesPlayer1, consumedStonesPlayer1 : Int = _
   var stonesPlayer2, consumedStonesPlayer2 : Int = _
@@ -40,6 +41,7 @@ class Controller extends IController with IObservable {
     this.selected = 0
     this.consumedStonesPlayer1 = 0
     this.consumedStonesPlayer2 = 0
+    this.gamefield = new GamefieldAdapter
 
   }
 
