@@ -13,7 +13,7 @@ class GamefieldGraph extends IGamefieldGraph {
 
   val NUMBER_ZERO = 0
   val NUMBER_VERTEX = 24
-  val CHAR_VERTEXES = List('b', 'n', 's')
+  val CHAR_VERTEXES = List('b', 'n', 'w')
   val CHAR_EMPTY = 'n'
   var vertexes : Array[Char] = _
   var adjacencyList : List[List[Int]] = _
