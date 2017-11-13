@@ -1,5 +1,7 @@
 package models.impl
 
+import java.util.UUID
+
 import models.IGamefieldGraph
 
 /**
@@ -16,10 +18,13 @@ class GamefieldGraph extends IGamefieldGraph {
   var vertexes : Array[Char] = _
   var adjacencyList : List[List[Int]] = _
 
+  var id : String = _
+
   def init() : Unit = {
     adjacencyList = List[List[Int]]()
     vertexes = Array[Char](24)
 
+    this.id = UUID.randomUUID().toString
   }
 
   def createVertexes(): Unit = {
@@ -45,8 +50,8 @@ class GamefieldGraph extends IGamefieldGraph {
 
   override def getAdjacencyList(v: Int): List[Int] = adjacencyList(v)
 
-  override def getId: String = ???
+  override def getId: String = return this.id
 
-  override def setId(id: String): Unit = ???
+  override def setId(id: String): Unit = this.id = id
 }
 
