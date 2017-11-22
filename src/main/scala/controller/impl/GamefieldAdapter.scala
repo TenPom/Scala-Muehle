@@ -23,7 +23,7 @@ class GamefieldAdapter extends IGamefieldGraphAdapter{
     * @param color  color of the stone
     * @return true if the stone got placed, false if not
     */
-  override def setStone(vertex: Int, color: Char) = ???
+  override def setStone(vertex: Int, color: Char) = gamefield.setStoneVertex(vertex, color)
 
   /**
     * remove a stone from the gamefield
@@ -31,7 +31,7 @@ class GamefieldAdapter extends IGamefieldGraphAdapter{
     * @param vertex number of the node
     * @return true if the stone got removed, false if not
     */
-override def removeStone(vertex: Int) = ???
+override def removeStone(vertex: Int) = setStone(vertex, 'n')
 
   /**
     * Get the color of a specific vertex
@@ -39,7 +39,7 @@ override def removeStone(vertex: Int) = ???
     * @param vertex number of the node
     * @return the character of the color in lower case. 'w' = white, 'b' = black, n = no color
     */
-  override def getColor(vertex: Int) = ???
+  override def getColor(vertex: Int) = gamefield.getStoneColorVertex(vertex)
 
   /**
     * Move a stone on the gamefield from one vertex to another
@@ -48,19 +48,21 @@ override def removeStone(vertex: Int) = ???
     * @param endVertex   number of end vertex
     * @return true if stone got moved, false if not
     */
-  override def moveStone(startVertex: Int, endVertex: Int) = ???
+  override def moveStone(startVertex: Int, endVertex: Int, color: Char) : Boolean =
+    gamefield.setStoneVertex(startVertex, 'n') && gamefield.setStoneVertex(endVertex, color)
+
 
   /**
     *
     * @param vertex
     * @return number of mills (0,1,2)
     */
-  override def getNumberOfMills(vertex: Int) = ???
+  override def getNumberOfMills(vertex: Int, color: Char) = ???
 
   /**
     * reset the gamefield
     *
     * @return
     */
-  override def reset = ???
+  override def reset : Unit = gamefield.init
 }
