@@ -64,5 +64,8 @@ override def removeStone(vertex: Int) = setStone(vertex, 'n')
     *
     * @return
     */
-  override def reset : Unit = gamefield.init
+  override def reset : Boolean = {
+    gamefield.init
+    return true
+  }
 }

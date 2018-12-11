@@ -67,13 +67,13 @@ class Controller extends IController with IObservable {
     * @return returns true if the stone got placed, false if not
     */
   override def setStone(vertex: Int, color: Char): Boolean = {
-  if(gamefield.setStone(vertex, color)) {
-    placedStones += 1
-    increasePlayerPlacedStones()
-    getCountClosedMills(vertex)
-    //updateObservers(vertex)
-    true
-  } else false
+    if(gamefield.setStone(vertex, color)) {
+      placedStones += 1
+      increasePlayerPlacedStones()
+      getCountClosedMills(vertex)
+      updateObservers(vertex)
+      return true
+    } else return false
 }
 
   /**
@@ -84,9 +84,31 @@ class Controller extends IController with IObservable {
     * @return returns true if the stone can be moved
     */
   override def moveStone(startVertex: Int, endVertex: Int): Boolean = {
-    selected match {
-      case 0 => true
+    if(gamefield.moveStone(startVertex, endVertex, getCurrentPlayerColor)) {
+      this.getCountClosedMills(endVertex)
+      this.updateObservers(endVertex)
+      return true
     }
+    return false
+  }
+
+  /**
+    * moves a Stone, controler saves the param if it is the startvertex. To move, it is requiered to call move 2 times
+    * ( moveStone(startNode); moveStone(endNode);
+    *
+    * @param vertex stone
+    * @return boolean state of succes
+    **/
+  override def moveStone(vertex: Int): Boolean = selected match {
+    case 0 =>
+      if ( (this.getVertexColor(vertex) == 'n' ) || ( getVertexColor(vertex) != current.getColor )) return false
+      selected = vertex
+      true
+    case `vertex` => false
+    case _ =>
+      val tmp = moveStone(selected, vertex)
+      selected = 0
+      tmp
   }
 
   /**
@@ -95,7 +117,24 @@ class Controller extends IController with IObservable {
     * @param vertex
     * @return returns true if the stone got removed
     */
-  override def removeStone(vertex: Int): Boolean = ???
+  override def removeStone(vertex: Int): Boolean = {
+    if(gamefield.getColor(vertex) == current.getColor)
+      return false
+
+    if(gamefield.removeStone(vertex)) {
+      decreaseStonesPlayer(gamefield.getColor(vertex))
+      return true
+    }
+
+    return false
+  }
+
+  def decreaseStonesPlayer(color : Char) : Unit = {
+    color match {
+      case 'w' => stonesPlayer2 -= 1
+      case 's' => stonesPlayer1 -= 1
+    }
+  }
 
   /**
     * Returns the number of Mills outgoing from the vertex
@@ -206,7 +245,7 @@ class Controller extends IController with IObservable {
   /**
     * Update Observers
     */
-  override def updateObservers: Unit = ???
+  override def updateObservers(vertex : Int): Unit = ???
 
 
   override def getGamefieldString: String = ???

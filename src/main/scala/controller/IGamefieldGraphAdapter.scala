@@ -36,14 +36,14 @@ trait IGamefieldGraphAdapter {
     * @param endVertex number of end vertex
     * @return true if stone got moved, false if not
     */
-  def moveStone(startVertex : Int, endVertex : Int) : Boolean
+  def moveStone(startVertex : Int, endVertex : Int, color : Char) : Boolean
 
   /**
     *
     * @param vertex
     * @return number of mills (0,1,2)
     */
-  def getNumberOfMills(vertex : Int) : Int
+  def getNumberOfMills(vertex : Int, color : Char) : Int
 
   /**
     * reset the gamefield

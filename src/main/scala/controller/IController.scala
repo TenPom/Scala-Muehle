@@ -31,6 +31,15 @@ trait IController {
   def moveStone (startVertex : Int, endVertex : Int) : Boolean
 
   /**
+    * moves a Stone, controler saves the param if it is the startvertex. To move, it is requiered to call move 2 times
+    * ( moveStone(startNode); moveStone(endNode);
+    *
+    * @param vertex stone
+    * @return boolean state of succes
+    **/
+  def moveStone(vertex : Int) : Boolean
+
+  /**
     * Removes a Stone from the Gamefield
     * @param vertex
     * @return returns true if the stone got removed

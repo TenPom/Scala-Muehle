@@ -23,7 +23,7 @@ class GamefieldGraph extends IGamefieldGraph {
 
   var id : String = _
 
-  def init() : Unit = {
+  override def init() : Unit = {
     adjacencyList = List[List[Int]]()
     vertexes = Array[Char](24)
 
