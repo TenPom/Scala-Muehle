@@ -15,8 +15,10 @@ class GamefieldGraph extends IGamefieldGraph {
 
   val NUMBER_ZERO = 0
   val NUMBER_VERTEX = 24
-  val CHAR_VERTEXES = List('b', 'n', 'w')
   val CHAR_EMPTY = 'n'
+  val CHAR_COLOR0 = 'w'
+  val CHAR_COLOR1 = 'b'
+  val CHAR_VERTEXES = List(CHAR_EMPTY, CHAR_COLOR0, CHAR_COLOR1)
 
   var vertexes : Array[Char] = _
   var adjacencyList : List[List[Int]] = _

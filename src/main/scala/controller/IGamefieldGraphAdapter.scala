@@ -43,7 +43,7 @@ trait IGamefieldGraphAdapter {
     * @param vertex
     * @return number of mills (0,1,2)
     */
-  def getNumberOfMills(vertex : Int, color : Char) : Int
+  def getNumberOfMills(vertex : Int, color: Char) : Int
 
   /**
     * reset the gamefield
