@@ -12,4 +12,5 @@ class tui extends IObserver{
     * @param gameEnded  gamestate (ended or not)
     */
   override def update(player: IPlayer, millsCount: Int, gameEnded: Boolean): Unit = ???
+
 }
