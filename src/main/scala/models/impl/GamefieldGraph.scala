@@ -28,7 +28,6 @@ class GamefieldGraph extends IGamefieldGraph {
   }
 
   def createVertexes(): Unit = {
-
     for(i <- NUMBER_ZERO to NUMBER_VERTEX)
       vertexes(i) = CHAR_EMPTY
   }
@@ -37,20 +36,17 @@ class GamefieldGraph extends IGamefieldGraph {
     if (vertex >= NUMBER_ZERO && vertex < NUMBER_VERTEX && CHAR_VERTEXES.contains(color)) {
       vertexes(vertex) = color
       return true
-    }
-    return false
+    } else
+      return false;
   }
 
   override def getStoneColorVertex(vertex: Int): Char = {
-    if (vertex >= NUMBER_ZERO && vertex < NUMBER_VERTEX)
-      return vertexes(vertex)
-
-    return CHAR_EMPTY
+    if(vertex >= NUMBER_ZERO && vertex < NUMBER_VERTEX) vertexes(vertex) else CHAR_EMPTY
   }
 
   override def getAdjacencyList(v: Int): List[Int] = adjacencyList(v)
 
-  override def getId: String = return this.id
+  override def getId: String = this.id
 
   override def setId(id: String): Unit = this.id = id
 }

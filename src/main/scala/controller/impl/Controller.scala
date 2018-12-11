@@ -45,13 +45,19 @@ class Controller extends IController with IObservable {
 
   }
 
+  def increasePlayerPlacedStones() : Unit = {
+    if (current.equals(player1)) consumedStonesPlayer1 += 1 else consumedStonesPlayer2 += 1
+  }
+
   /**
     * Sets a Stone on the Gamefield
     *
     * @param vertex
     * @return returns true if the stone got placed, false if not
     */
-  override def setStone(vertex: Int): Boolean = ???
+  override def setStone(vertex: Int): Boolean = {
+    setStone(vertex, getCurrentPlayerColor)
+  }
 
   /**
     * Sets a Stone with a specific color
@@ -60,7 +66,15 @@ class Controller extends IController with IObservable {
     * @param color color of the stone
     * @return returns true if the stone got placed, false if not
     */
-override def setStone(vertex: Int, color: Char): Boolean = ???
+  override def setStone(vertex: Int, color: Char): Boolean = {
+  if(gamefield.setStone(vertex, color)) {
+    placedStones += 1
+    increasePlayerPlacedStones()
+    getCountClosedMills(vertex)
+    //updateObservers(vertex)
+    true
+  } else false
+}
 
   /**
     * Moves a stone from one vertex to an other
@@ -69,7 +83,11 @@ override def setStone(vertex: Int, color: Char): Boolean = ???
     * @param endVertex
     * @return returns true if the stone can be moved
     */
-  override def moveStone(startVertex: Int, endVertex: Int): Boolean = ???
+  override def moveStone(startVertex: Int, endVertex: Int): Boolean = {
+    selected match {
+      case 0 => true
+    }
+  }
 
   /**
     * Removes a Stone from the Gamefield
@@ -189,6 +207,7 @@ override def setStone(vertex: Int, color: Char): Boolean = ???
     * Update Observers
     */
   override def updateObservers: Unit = ???
+
 
   override def getGamefieldString: String = ???
 }
