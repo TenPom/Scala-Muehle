@@ -22,6 +22,8 @@ trait IController {
     */
   def setStone (vertex : Int, color : Char) : Boolean
 
+  def moveStone (vertex: Int) : Boolean
+
   /**
     * Moves a stone from one vertex to an other
     * @param startVertex
