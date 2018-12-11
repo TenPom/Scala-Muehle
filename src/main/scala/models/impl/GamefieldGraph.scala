@@ -4,6 +4,8 @@ import java.util.UUID
 
 import models.IGamefieldGraph
 
+import scala.io.Source
+
 /**
   *
   * @author Patrick Schmidt
@@ -15,6 +17,7 @@ class GamefieldGraph extends IGamefieldGraph {
   val NUMBER_VERTEX = 24
   val CHAR_VERTEXES = List('b', 'n', 'w')
   val CHAR_EMPTY = 'n'
+
   var vertexes : Array[Char] = _
   var adjacencyList : List[List[Int]] = _
 
@@ -24,12 +27,23 @@ class GamefieldGraph extends IGamefieldGraph {
     adjacencyList = List[List[Int]]()
     vertexes = Array[Char](24)
 
+    createEdges()
+    createVertexes()
+
     this.id = UUID.randomUUID().toString
   }
 
   def createVertexes(): Unit = {
     for(i <- NUMBER_ZERO to NUMBER_VERTEX)
       vertexes(i) = CHAR_EMPTY
+  }
+
+  def createEdges() : Unit = {
+    for (line <- Source.fromFile("/Util/GamefieldEdges.txt").getLines()) {
+      val node = line.split(" ")(0).toInt
+      val neighbour = line.split(" ")(1).toInt
+      adjacencyList(node).::(neighbour)
+    }
   }
 
   override def setStoneVertex(vertex: Int, color: Char): Boolean = {
