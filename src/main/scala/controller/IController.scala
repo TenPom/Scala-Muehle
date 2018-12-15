@@ -22,8 +22,6 @@ trait IController {
     */
   def setStone (vertex : Int, color : Char) : Boolean
 
-  def moveStone (vertex: Int) : Boolean
-
   /**
     * Moves a stone from one vertex to an other
     * @param startVertex
@@ -31,6 +29,15 @@ trait IController {
     * @return returns true if the stone can be moved
     */
   def moveStone (startVertex : Int, endVertex : Int) : Boolean
+
+  /**
+    * moves a Stone, controler saves the param if it is the startvertex. To move, it is requiered to call move 2 times
+    * ( moveStone(startNode); moveStone(endNode);
+    *
+    * @param vertex stone
+    * @return boolean state of succes
+    **/
+  def moveStone(vertex : Int) : Boolean
 
   /**
     * Removes a Stone from the Gamefield
@@ -90,11 +97,6 @@ trait IController {
   def getCurrentPlayerColor : Char
 
   /**
-    * Changing the current player to the next one
-    */
-  def selectNextPlayer : Unit
-
-  /**
     * Get the color of the vertex
     * @return the vertex color as char
     */
@@ -119,4 +121,8 @@ trait IController {
   def resetGame : Boolean
 
   def getGamefieldString : String
+
+  def setNextPlayer : Unit
+
+  def millDeleteStone (vertex : Int) : Boolean
 }

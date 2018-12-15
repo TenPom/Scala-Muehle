@@ -36,7 +36,7 @@ trait IGamefieldGraphAdapter {
     * @param endVertex number of end vertex
     * @return true if stone got moved, false if not
     */
-  def moveStone(startVertex : Int, endVertex : Int, color:Char) : Boolean
+  def moveStone(startVertex : Int, endVertex : Int, color : Char) : Boolean
 
   /**
     *
