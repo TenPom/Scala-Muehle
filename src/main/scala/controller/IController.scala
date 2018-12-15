@@ -22,8 +22,6 @@ trait IController {
     */
   def setStone (vertex : Int, color : Char) : Boolean
 
-  def moveStone (vertex: Int) : Boolean
-
   /**
     * Moves a stone from one vertex to an other
     * @param startVertex
@@ -99,11 +97,6 @@ trait IController {
   def getCurrentPlayerColor : Char
 
   /**
-    * Changing the current player to the next one
-    */
-  def selectNextPlayer : Unit
-
-  /**
     * Get the color of the vertex
     * @return the vertex color as char
     */
@@ -128,4 +121,8 @@ trait IController {
   def resetGame : Boolean
 
   def getGamefieldString : String
+
+  def setNextPlayer : Unit
+
+  def millDeleteStone (vertex : Int) : Boolean
 }
