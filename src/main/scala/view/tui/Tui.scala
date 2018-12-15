@@ -1,11 +1,40 @@
 package view.tui
 
+import java.util.Scanner
+
 import Observer.IObserver
 import controler.IController
 import models.IPlayer
 
-class tui(val controller: IController) extends IObserver {
+class Tui(val controller: IController) extends IObserver {
 
+  val scanner = new Scanner(System.in);
+  {
+    controller.registerObserver(this);
+    display
+  }
+
+  def handleInput(vertex : Int) : Boolean = {
+    var log : String = ""
+    if (controller.getCurrentStonesToDelete > 0) {
+      controller.millDeleteStone(vertex)
+    } else if (controller.requireInitial) {
+        if (!controller.setStone(vertex)) {
+            log = "Falsche Eingabe!";
+            println(log)
+        }
+    } else {
+      log = "Bitte Endknoten eingeben: "
+      println(log)
+      var end : Int = scanner.nextInt
+      if (!controller.moveStone(vertex, end)) {
+        log = "Falsche Eingabe"
+        println(log)
+      }
+    }
+
+    true
+  }
 
   /**
     * Observer Update-Function
